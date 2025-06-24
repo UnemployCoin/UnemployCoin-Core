@@ -53,3 +53,8 @@ We believe in:
 /src/chainparams.cpp -> Network rules (supply, genesis, ports, etc.)
 /build         -> Build scripts
 /doc           -> Documentation
+
+Build Instructions (Coming Soon)
+Step-by-step Linux and Windows instructions will be posted as compilation stabilizes.
+
+For now, you can explore the code, follow progress, or contribute feedback.
