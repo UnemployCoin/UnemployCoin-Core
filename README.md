@@ -39,7 +39,8 @@ make -j$(nproc)
 cd src/qt
 make
 ```
-Contributing
+### Contributing
+
 We welcome open contributions from the community.
 
 Fork the repo
@@ -52,11 +53,11 @@ More info in CONTRIBUTING.md
 
 ---
 
-License
+### License
 This project is licensed under the MIT license. See LICENSE for details.
 
 ---
-Useful Links
+### Useful Links
 
 Website: https://unemploycoin.com
 Chatbot: https://unemploycoin.com/UnemployCoinChatBot/
