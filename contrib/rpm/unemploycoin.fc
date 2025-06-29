@@ -1,0 +1,8 @@
+/usr/bin/unemploycoin-cli		--	gen_context(system_u:object_r:raven_exec_t,s0)
+/usr/sbin/unemploycoind		--	gen_context(system_u:object_r:raven_exec_t,s0)
+/usr/lib(64)?/unemploycoin/unemploycoind		--	gen_context(system_u:object_r:raven_exec_t,s0)
+
+/etc/unemploycoin(/.*)?		gen_context(system_u:object_r:raven_conf_t,s0)
+/var/lib/unemploycoin(/.*)?		gen_context(system_u:object_r:raven_var_lib_t,s0)
+
+(/var)?/run/unemploycoind(/.*)?   gen_context(system_u:object_r:raven_var_run_t,s0)

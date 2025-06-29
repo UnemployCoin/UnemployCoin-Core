@@ -1,0 +1,33 @@
+# /etc/conf.d/unemploycoind: config file for /etc/init.d/unemploycoind
+
+# Config file location
+#UNEMPLOYCOIND_CONFIGFILE="/etc/unemploycoin/unemploycoin.conf"
+
+# What directory to write pidfile to?  (created and owned by $UNEMPLOYCOIND_USER)
+#UNEMPLOYCOIND_PIDDIR="/var/run/unemploycoind"
+
+# What filename to give the pidfile
+#UNEMPLOYCOIND_PIDFILE="${UNEMPLOYCOIND_PIDDIR}/unemploycoind.pid"
+
+# Where to write unemploycoind data (be mindful that the blockchain is large)
+#UNEMPLOYCOIND_DATADIR="/var/lib/unemploycoind"
+
+# User and group to own unemploycoind process
+#UNEMPLOYCOIND_USER="unemploycoin"
+#UNEMPLOYCOIND_GROUP="unemploycoin"
+
+# Path to unemploycoind executable
+#UNEMPLOYCOIND_BIN="/usr/bin/unemploycoind"
+
+# Nice value to run unemploycoind under
+#UNEMPLOYCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+#UNEMPLOYCOIND_OPTS=""
+
+# The timeout in seconds OpenRC will wait for unemploycoind to terminate
+# after a SIGTERM has been raised.
+# Note that this will be mapped as argument to start-stop-daemon's
+# '--retry' option, which means you can specify a retry schedule
+# here. For more information see man 8 start-stop-daemon.
+UNEMPLOYCOIND_SIGTERM_TIMEOUT=60

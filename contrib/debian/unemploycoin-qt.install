@@ -1,0 +1,6 @@
+usr/local/bin/unemploycoin-qt usr/bin
+share/pixmaps/raven32.xpm usr/share/pixmaps
+share/pixmaps/raven16.xpm usr/share/pixmaps
+share/pixmaps/raven128.png usr/share/pixmaps
+debian/unemploycoin-qt.desktop usr/share/applications
+debian/unemploycoin-qt.protocol usr/share/kde4/services/

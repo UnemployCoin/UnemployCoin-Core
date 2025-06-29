@@ -1,0 +1,22 @@
+[Unit]
+Description=UnemployCoin's distributed currency daemon
+After=network.target
+
+[Service]
+User=unemploycoin
+Group=unemploycoin
+
+Type=forking
+PIDFile=/var/lib/unemploycoind/unemploycoind.pid
+ExecStart=/usr/bin/unemploycoind -daemon -pid=/var/lib/unemploycoind/unemploycoind.pid \
+-conf=/etc/unemploycoin/unemploycoin.conf -datadir=/var/lib/unemploycoind -disablewallet
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

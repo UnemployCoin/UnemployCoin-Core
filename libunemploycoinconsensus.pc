@@ -1,0 +1,11 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: UnemployCoin Core consensus library
+Description: Library for the UnemployCoin consensus protocol.
+Version: 4.6.1
+Libs: -L${libdir} -lravenconsensus
+Cflags: -I${includedir}
+Requires.private: libcrypto

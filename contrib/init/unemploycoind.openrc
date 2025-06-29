@@ -1,0 +1,92 @@
+#!/sbin/runscript
+
+# backward compatibility for existing gentoo layout 
+#
+if [ -d "/var/lib/unemploycoin/.unemploycoin" ]; then
+	UNEMPLOYCOIND_DEFAULT_DATADIR="/var/lib/unemploycoin/.unemploycoin"
+else
+	UNEMPLOYCOIND_DEFAULT_DATADIR="/var/lib/unemploycoind"
+fi
+
+UNEMPLOYCOIND_CONFIGFILE=${UNEMPLOYCOIND_CONFIGFILE:-/etc/unemploycoin/unemploycoin.conf}
+UNEMPLOYCOIND_PIDDIR=${UNEMPLOYCOIND_PIDDIR:-/var/run/unemploycoind}
+UNEMPLOYCOIND_PIDFILE=${UNEMPLOYCOIND_PIDFILE:-${UNEMPLOYCOIND_PIDDIR}/unemploycoind.pid}
+UNEMPLOYCOIND_DATADIR=${UNEMPLOYCOIND_DATADIR:-${UNEMPLOYCOIND_DEFAULT_DATADIR}}
+UNEMPLOYCOIND_USER=${UNEMPLOYCOIND_USER:-${UNEMPLOYCOIN_USER:-unemploycoin}}
+UNEMPLOYCOIND_GROUP=${UNEMPLOYCOIND_GROUP:-unemploycoin}
+UNEMPLOYCOIND_BIN=${UNEMPLOYCOIND_BIN:-/usr/bin/unemploycoind}
+UNEMPLOYCOIND_NICE=${UNEMPLOYCOIND_NICE:-${NICELEVEL:-0}}
+UNEMPLOYCOIND_OPTS="${UNEMPLOYCOIND_OPTS:-${UNEMPLOYCOIN_OPTS}}"
+
+name="UnemployCoin Core Daemon"
+description="UnemployCoin cryptocurrency P2P network daemon"
+
+command="/usr/bin/unemmploycoind"
+command_args="-pid=\"${UNEMPLOYCOIND_PIDFILE}\" \
+		-conf=\"${UNEMPLOYCOIND_CONFIGFILE}\" \
+		-datadir=\"${UNEMPLOYCOIND_DATADIR}\" \
+		-daemon \
+		${UNEMPLOYCOIND_OPTS}"
+
+required_files="${UNEMPLOYCOIND_CONFIGFILE}"
+start_stop_daemon_args="-u ${UNEMPLOYCOIND_USER} \
+			-N ${UNEMPLOYCOIND_NICE} -w 2000"
+pidfile="${UNEMPLOYCOIND_PIDFILE}"
+
+# The retry schedule to use when stopping the daemon. Could be either
+# a timeout in seconds or multiple signal/timeout pairs (like
+# "SIGKILL/180 SIGTERM/300")
+retry="${UNEMPLOYCOIND_SIGTERM_TIMEOUT}"
+
+depend() {
+	need localmount net
+}
+
+# verify
+# 1) that the datadir exists and is writable (or create it)
+# 2) that a directory for the pid exists and is writable
+# 3) ownership and permissions on the config file
+start_pre() {
+	checkpath \
+	-d \
+	--mode 0750 \
+	--owner "${UNEMPLOYCOIND_USER}:${UNEMPLOYCOIND_GROUP}" \
+	"${UNEMPLOYCOIND_DATADIR}"
+
+	checkpath \
+	-d \
+	--mode 0755 \
+	--owner "${UNEMPLOYCOIND_USER}:${UNEMPLOYCOIND_GROUP}" \
+	"${UNEMPLOYCOIND_PIDDIR}"
+
+	checkpath -f \
+	-o ${UNEMPLOYCOIND_USER}:${UNEMPLOYCOIND_GROUP} \
+	-m 0660 \
+	${UNEMPLOYCOIND_CONFIGFILE}
+
+	checkconfig || return 1
+}
+
+checkconfig()
+{
+	if ! grep -qs '^rpcpassword=' "${UNEMPLOYCOIND_CONFIGFILE}" ; then
+		eerror ""
+		eerror "ERROR: You must set a secure rpcpassword to run unemmploycoind."
+		eerror "The setting must appear in ${UNEMPLOYCOIND_CONFIGFILE}"
+		eerror ""
+		eerror "This password is security critical to securing wallets "
+		eerror "and must not be the same as the rpcuser setting."
+		eerror "You can generate a suitable random password using the following "
+		eerror "command from the shell:"
+		eerror ""
+		eerror "bash -c 'tr -dc a-zA-Z0-9 < /dev/urandom | head -c32 && echo'"
+		eerror ""
+		eerror "It is recommended that you also set alertnotify so you are "
+		eerror "notified of problems:"
+		eerror ""
+		eerror "ie: alertnotify=echo %%s | mail -s \"UnemployCoin Alert\"" \
+			"admin@foo.com"
+		eerror ""
+		return 1
+	fi
+}

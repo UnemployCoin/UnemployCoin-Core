@@ -1,0 +1,13 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=UnemployCoin Core
+Comment=Connect to the UnemployCoin P2P Network
+Comment[de]=Verbinde mit dem UnemployCoin peer-to-peer Netzwerk
+Comment[fr]=UnemployCoin, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=UnemployCoin, eşten eşe kriptografik sanal para birimi
+Exec=unemploycoin-qt %u
+Terminal=false
+Type=Application
+Icon=raven128
+MimeType=x-scheme-handler/unemploycoin;
+Categories=Office;Finance;
