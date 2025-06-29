@@ -1,4 +1,4 @@
-# UnemployCoinCore™
+# UnemployCoin™ Core
 
 Welcome to the official core codebase of **UnemployCoin™**, a decentralized Proof-of-Work blockchain built to empower the unemployed, underrepresented, and overlooked. This is a work-in-progress fork of Ravencoin with major modifications to align with our mission of economic fairness and accessibility.
 
