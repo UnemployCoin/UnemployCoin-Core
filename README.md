@@ -38,10 +38,10 @@ We believe in:
 |-----------------------------|--------------|-------------------------------------------------|
 | Custom Genesis Block        | ✅ Done       | Includes unique political/economic message      |
 | Rebranding to UnemployCoin  | ✅ In Progress| Binary and path renames in progress             |
-| Premine Implementation      | ✅ Done       | 10M premine coded into block 1                  |
+| Premine Implementation      | ✅ Done       | 10K premine coded into block 1                  |
 | Bitcoin-style Halving       | ✅ Done       | Every 210,000 blocks (approx. every 4 years)    |
-| Custom Block Explorer       | Planned    | Will be hosted on [unemploycoin.com](https://unemploycoin.com) |
-| Windows GUI Wallet          | 🛠In Progress| Build issues being resolved                     |
+| Custom Block Explorer       | Planned       | Will be hosted                                  |
+| Windows GUI Wallet          | 🛠In Progress | Build issues being resolved                      |
 
 ---
 
@@ -53,8 +53,10 @@ We believe in:
 /src/chainparams.cpp -> Network rules (supply, genesis, ports, etc.)
 /build         -> Build scripts
 /doc           -> Documentation
+```
 
 Build Instructions (Coming Soon)
 Step-by-step Linux and Windows instructions will be posted as compilation stabilizes.
 
 For now, you can explore the code, follow progress, or contribute feedback.
+```
